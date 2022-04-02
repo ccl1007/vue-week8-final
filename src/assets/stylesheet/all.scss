@@ -1,0 +1,7 @@
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+// 2. Include any default variable overrides here
+// 3. Include remainder of required Bootstrap stylesheets
+// ~代表node_modules
+@import "~bootstrap/scss/functions";//原生的functions
+@import "./helpers/variables";//自定義的變數
+@import "~bootstrap/scss/bootstrap";//載入所有 Bootstrap
