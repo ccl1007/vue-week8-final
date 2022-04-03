@@ -28,51 +28,26 @@
   </div>
   <div class="container">
     <div class="row mt-5">
-      <div class="col-md-4 mt-md-4">
-        <div class="card border-0 mb-4">
-          <img
-            src="https://i0.wp.com/littlemy-lm.com/wp-content/uploads/2022/03/13B9496D-C01B-474D-ABF2-F431FAA80A4C.png?resize=1024%2C820&ssl=1"
-            class="card-img-top rounded-0"
-            alt="L.M"
-          />
-        </div>
-      </div>
-      <div class="col-md-4 mt-md-4">
-        <div class="card border-0 mb-4">
-          <img
-            src="https://i0.wp.com/littlemy-lm.com/wp-content/uploads/2022/03/13B9496D-C01B-474D-ABF2-F431FAA80A4C.png?resize=1024%2C820&ssl=1"
-            class="card-img-top rounded-0"
-            alt="L.M"
-          />
-        </div>
-      </div>
-      <div class="col-md-4 mt-md-4">
-        <div class="card border-0 mb-4">
-          <img
-            src="https://i0.wp.com/littlemy-lm.com/wp-content/uploads/2022/03/13B9496D-C01B-474D-ABF2-F431FAA80A4C.png?resize=1024%2C820&ssl=1"
-            class="card-img-top rounded-0"
-            alt="L.M"
-          />
-        </div>
-      </div>
-      <!-- <div class="col-md-4 mt-md-4">
-        <div class="card border-0 mb-4">
-          <img
-            src="https://images.unsplash.com/photo-1502743780242-f10d2ce370f3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1916&q=80"
-            class="card-img-top rounded-0"
-            alt="..."
-          />
-          <div class="card-body text-center">
-            <h4>Lorem ipsum</h4>
-            <div class="d-flex justify-content-between">
-              <p class="card-text text-muted mb-0">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                diam nonumy eirmod.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div> -->
+      <swiper
+      :modules="modules"
+      :slides-per-view="5"
+      :space-between="50"
+      navigation
+      :pagination="{ clickable: true }"
+      >
+        <swiper-slide v-for="item in products" :key="item.id">
+          <router-link :to="`/product/${item.id}`" target="_blank" >
+            <div
+              :style="{ backgroundImage: `url(${item.imageUrl})` }"
+              style="
+                height: 300px;
+                background-size: cover;
+                background-position: center center;
+              "
+            ></div>
+          </router-link>
+        </swiper-slide>
+      </swiper>
     </div>
   </div>
   <div class="bg-light mt-7">
@@ -129,4 +104,41 @@
 
 <script>
 // @ is an alias to /src
+// Import Swiper Vue.js components
+import { Swiper, SwiperSlide } from 'swiper/vue'
+// import Swiper core and required modules
+import { Navigation, Pagination } from 'swiper'
+
+// Import Swiper styles
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
+export default {
+  data () {
+    return {
+      products: [],
+      product: [],
+      id: '',
+      // modules放在data即可
+      modules: [Navigation, Pagination]
+    }
+  },
+  components: {
+    Swiper,
+    SwiperSlide
+  },
+  methods: {
+    getProducts () {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
+      this.$http.get(url).then((res) => {
+        this.products = res.data.products
+      })
+    }
+  },
+  mounted () {
+    this.getProducts()
+  }
+}
+
 </script>

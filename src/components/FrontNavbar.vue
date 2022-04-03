@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light">
-      <router-link class="navbar-brand" to="/">L.M</router-link>
+      <router-link class="navbar-brand" to="/" me-4><img  style="height:3rem; " src="../assets/LM.png " alt="L.M"></router-link>
       <button
         class="navbar-toggler"
         type="button"

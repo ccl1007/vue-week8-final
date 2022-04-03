@@ -2,48 +2,24 @@
  <div class="container">
     <div class="row align-items-center">
       <div class="col-md-7">
-        <div
-          id="carouselExampleControls"
-          class="carousel slide"
-          data-ride="carousel"
-        >
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img
-                :src="product.imageUrl"
-                class="d-block w-100"
-                :alt="product.title"
-              />
-            </div>
-            <div class="carousel-item">
-              <img
-                v-for="image in product.imagesUrl"
-                :key="image"
-                :src="image"
-                class="d-block w-100"
-                :alt="product.title"
-              />
-            </div>
-          </div>
-          <a
-            class="carousel-control-prev"
-            href="#carouselExampleControls"
-            role="button"
-            data-slide="prev"
-          >
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a
-            class="carousel-control-next"
-            href="#carouselExampleControls"
-            role="button"
-            data-slide="next"
-          >
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
+      <swiper
+      :modules="modules"
+      :slides-per-view="1"
+      :space-between="50"
+      navigation
+      :pagination="{ clickable: true }"
+      >
+        <swiper-slide v-for="image in product.imagesUrl" :key="image">
+            <div
+              :style="{ backgroundImage: `url(${image})` }"
+              style="
+                height: 700px;
+                background-size: cover;
+                background-position: center center;
+              "
+            ></div>
+        </swiper-slide>
+      </swiper>
       </div>
       <div class="col-md-5">
         <nav aria-label="breadcrumb">
@@ -269,7 +245,7 @@ export default {
     getProduct () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id} `
       this.$http.get(url).then((res) => {
-        console.log(res)
+        console.log('getProduct', res)
         this.product = res.data.product
       })
     },
