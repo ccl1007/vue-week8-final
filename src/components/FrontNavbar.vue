@@ -25,8 +25,8 @@
             >產品列表</router-link
           ></li>
           <li><router-link class="nav-item nav-link me-4" to="/guide">購物須知</router-link></li>
-          <li><router-link class="nav-item nav-link position-relative " to="/"
-            ><i class="bi bi-cart fs-5  " ></i
+          <li me-4 ><router-link class="nav-item nav-link  position-relative " to="/cart"
+            ><i class="bi bi-cart fs-5 " ></i
             ><span
                 class="position-absolute top-10 start-90 translate-middle badge rounded-pill bg-danger "
               >
