@@ -27,14 +27,12 @@
     </div>
   </div>
   <div class="container">
-    <div class="row mt-5">
+    <div class="row mt-5 ">
       <swiper
       :modules="modules"
-      :slides-per-view="5"
-      :space-between="50"
       navigation
       :pagination="{ clickable: true }"
-      >
+      :breakpoints="breakpoints">
         <swiper-slide v-for="item in products" :key="item.id">
           <router-link :to="`/product/${item.id}`" target="_blank" >
             <div
@@ -121,7 +119,21 @@ export default {
       product: [],
       id: '',
       // modules放在data即可
-      modules: [Navigation, Pagination]
+      modules: [Navigation, Pagination],
+      breakpoints: {
+        767: {
+          slidesPerView: 1,
+          spaceBetween: 20
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20
+        },
+        1024: {
+          slidesPerView: 5,
+          spaceBetween: 20
+        }
+      }
     }
   },
   components: {

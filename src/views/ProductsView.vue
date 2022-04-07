@@ -19,7 +19,7 @@
   </div>
   <div class="container mt-md-5 mt-3 mb-7">
     <div class="row">
-      <div class="col-md-4" >
+      <div class="col-md-3">
         <div
           class="accordion border border-bottom border-top-0 border-start-0 border-end-0 mb-3"
           id="accordionExample"
@@ -47,19 +47,29 @@
               <div class="card-body py-0">
                 <ul class="list-unstyled">
                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted">全部商品</router-link>
+                    <router-link to="/" class="py-2 d-block text-muted"
+                      >全部商品</router-link
+                    >
                   </li>
                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted">上衣</router-link>
+                    <router-link to="/" class="py-2 d-block text-muted"
+                      >上衣</router-link
+                    >
                   </li>
                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted">外套</router-link>
+                    <router-link to="/" class="py-2 d-block text-muted"
+                      >外套</router-link
+                    >
                   </li>
-                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted">飾品</router-link>
+                  <li>
+                    <router-link to="/" class="py-2 d-block text-muted"
+                      >飾品</router-link
+                    >
                   </li>
-                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted">鞋子</router-link>
+                  <li>
+                    <router-link to="/" class="py-2 d-block text-muted"
+                      >鞋子</router-link
+                    >
                   </li>
                 </ul>
               </div>
@@ -70,7 +80,7 @@
       <div class="col-md-8">
         <!-- row-cols-n n-定義欄數 1R/nC -->
         <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3">
-          <div class="col" v-for="product in products" :key="product.id" >
+          <div class="col" v-for="product in products" :key="product.id">
             <div class="card border-0 mb-4 position-relative position-relative">
               <!-- <img
                 :src="product.imageUrl"
@@ -78,19 +88,33 @@
                 :alt="product.title"
               /> -->
               <!-- 圖片等高的解決方式- 使用背景圖 -->
-              <div :style="{backgroundImage:`url(${product.imageUrl})`}"
-              style="height:355px;background-size: cover;background-position: center center  "
-              >
-              </div>
-               <router-link :to="`/product/${product.id}`">
-               <i class="bi bi-suit-heart position-absolute" style="right: 10px; top: 10px"></i>
-               </router-link>
+              <router-link :to="`/product/${product.id}`">
+                <div
+                  :style="{ backgroundImage: `url(${product.imageUrl})` }"
+                  style="
+                    height: 355px;
+                    background-size: cover;
+                    background-position: center center;
+                  "
+                ></div>
+              </router-link>
+              <router-link :to="`/product/${product.id}`">
+                <i
+                  class="bi bi-suit-heart position-absolute"
+                  style="right: 10px; top: 10px"
+                ></i>
+              </router-link>
               <div class="card-body p-0">
                 <h4 class="mb-0 mt-3">
-                  <router-link :to="`/product/${product.id}`">{{product.title}}</router-link>
+                  <router-link :to="`/product/${product.id}`">{{
+                    product.title
+                  }}</router-link>
                 </h4>
-                <p class="card-text mb-0"  >
-                  NT${{product.price}} <span class="text-muted"><del>NT${{product.origin_price}}</del></span>
+                <p class="card-text mb-0">
+                  NT${{ product.price }}
+                  <span class="text-muted"
+                    ><del>NT${{ product.origin_price }}</del></span
+                  >
                 </p>
                 <p class="text-muted mt-3"></p>
               </div>
@@ -100,24 +124,32 @@
       </div>
     </div>
   </div>
+  <Pagination :pages="pagination" @emit-pages="getProducts"></Pagination>
   <!-- place for footer -->
 </template>
 
 <script>
+import Pagination from '@/components/PaginationComp.vue'
 export default {
   data () {
     return {
-      products: []
+      products: [],
+      pagination: {},
+      currentPage: 1
     }
   },
+  components: {
+    Pagination
+  },
+  inject: ['emitter'],
   methods: {
-    getProducts () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
-      this.$http.get(url)
-        .then((res) => {
-          console.log('getProducts:', res)
-          this.products = res.data.products
-        })
+    getProducts (page = 1) {
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products?page=${page}`
+      this.$http.get(url).then((res) => {
+        console.log('getProducts:', res)
+        this.products = res.data.products
+        this.pagination = res.data.pagination
+      })
     }
   },
   mounted () {

@@ -25,12 +25,14 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb bg-white px-0 mb-0 py-3">
             <li class="breadcrumb-item">
-              <a class="text-muted" href="./index.html">Home</a>
+             <router-link class="text-muted" to="/">首頁</router-link>
             </li>
             <li class="breadcrumb-item">
-              <a class="text-muted" href="./product.html">Product</a>
+              <router-link class="text-muted" to="/products">全部商品</router-link>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">Detail</li>
+             <li class="breadcrumb-item">
+            <router-link :to="`/product/${product.id}`">{{product.title}}</router-link>
+            </li>
           </ol>
         </nav>
         <h2 class="fw-bold h1 mb-1">{{ product.title }}</h2>
@@ -44,8 +46,11 @@
               <div class="input-group-prepend">
                 <button
                   class="btn btn-outline-dark border-0 py-2"
+                  :class="{ 'not-allowed': qty === 1 }"
+                  :disabled="qty === 1"
                   type="button"
                   id="button-addon1"
+                  @click="changeQty('dec')"
                 >
                   <i class="bi bi-dash-circle"></i>
                 </button>
@@ -53,16 +58,15 @@
               <input
                 type="text"
                 class="form-control border-0 text-center my-auto shadow-none bg-light"
-                placeholder=""
-                aria-label="Example text with button addon"
-                aria-describedby="button-addon1"
-                value="1"
+                placeholder="1"
+                v-model="qty"
               />
               <div class="input-group-append">
                 <button
                   class="btn btn-outline-dark border-0 py-2"
                   type="button"
                   id="button-addon2"
+                  @click.prevent="changeQty('inc')"
                 >
                   <i class="bi bi-plus-circle"></i>
                 </button>
@@ -227,6 +231,7 @@ export default {
       products: [],
       product: [],
       id: '',
+      qty: 1,
       // modules放在data即可
       modules: [Navigation, Pagination]
     }
@@ -253,7 +258,7 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart `
       const data = {
         product_id: this.id,
-        qty: 1
+        qty: this.qty
       }
       this.$http.post(url, { data }).then((res) => {
         console.log('addToCart:', res)
@@ -261,7 +266,16 @@ export default {
         // 觸發監聽事件
         emitter.emit('get-cart')
       })
+    },
+    changeQty (num) {
+      if (num === 'inc') {
+        this.qty += 1
+      }
+      if (num === 'dec') {
+        this.qty -= 1
+      }
     }
+
   },
   mounted () {
     // 取得參數ID
