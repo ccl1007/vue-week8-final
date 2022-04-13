@@ -1,5 +1,5 @@
 /* eslint-disable vue/multi-word-component-names */
-import { createApp } from 'vue'
+import Vue, { createApp } from 'vue'
 // 匯入bootstrap-icons
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import App from './App.vue'
@@ -35,3 +35,5 @@ app.component('Form', Form)
 app.component('Field', Field)
 app.component('ErrorMessage', ErrorMessage)
 app.mount('#app')
+
+Vue.prototype.$scrollToTop = () => window.scrollTo(0, 0)
