@@ -1,5 +1,5 @@
 <template>
-  <div class="position-relative">
+  <div class="position-relative" style="margin-top: 5rem" >
     <div
       class="position-absolute"
       style="
@@ -7,21 +7,17 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-image: url(https://littlemy-lm.com/wp-content/uploads/2022/03/AF29BFE6-9E95-4911-BC2B-2AF12DEF4DA4.png);
+        background-image: url(https://upload.cc/i1/2022/04/13/KOaCrd.jpg);
+        background-size: cover;
         background-position: center center;
-        opacity: 0.1;
+        opacity: 0.2;
       "
     ></div>
     <div class="container d-flex flex-column" style="min-height: 100vh">
       <!-- place for navbar -->
       <div class="row justify-content-center my-auto">
         <div class="col-md-6 text-center">
-          <h2>Little.My <br>小小單品創造出自己風格</h2>
-          <p class="text-muted mb-0">
-            <i class="bi bi-facebook"></i>🔎L.M boutique <br>
-            <i class="bi bi-instagram"></i>🔎littlemy915 <br>
-            <i class="bi bi-chat-right"></i>🔎官方line客服@hct5154o <br>
-          </p>
+          <h2>Little.My 韓國女裝代購 <br>小小單品創造出自己風格</h2>
         </div>
       </div>
     </div>
@@ -54,9 +50,6 @@
             <div class="row justify-content-center my-3">
               <div class="col-md-6 text-center">
                 <h3><i class="bi bi-heart-half"></i>本月推薦</h3>
-                <p class="my-3">
-                  All/Outer/Top/Shoes
-                </p>
               </div>
             </div>
       </div>

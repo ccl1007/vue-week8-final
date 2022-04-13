@@ -1,5 +1,5 @@
 <template>
-    <div class="container" >
+    <div class="container " style="margin-top: 5rem" >
         <div class="accordion border border-bottom border-top-0 border-start-0 border-end-0 mb-3" id="accordionExample">
             <div class="card border-0">
               <div class="card-header py-4 bg-white border border-bottom-0 border-top border-start-0 border-end-0" id="headingOne" data-bs-toggle="collapse" data-bs-target="#collapseOne">

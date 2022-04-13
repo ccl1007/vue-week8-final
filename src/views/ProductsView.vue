@@ -1,7 +1,7 @@
 <template>
   <div
     class="position-relative d-flex align-items-center justify-content-center"
-    style="min-height: 400px"
+    style="min-height: 400px margin-top: 5rem"
   >
     <div
       class="position-absolute"

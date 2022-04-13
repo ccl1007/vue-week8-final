@@ -1,6 +1,7 @@
 <template>
-  <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light">
+<div class="fixed-top bg-white">
+  <div class="container ">
+    <nav class="navbar  navbar-expand-lg navbar-light">
       <router-link class="navbar-brand" to="/" me-4><img  style="height:3rem; " src="../assets/LM.png " alt="L.M"></router-link>
       <button
         class="navbar-toggler"
@@ -38,6 +39,7 @@
       </div>
     </nav>
   </div>
+</div>
 </template>
 
 <script>
