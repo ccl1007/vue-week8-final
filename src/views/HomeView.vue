@@ -7,7 +7,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-image: url(https://upload.cc/i1/2022/04/13/sWkLEA.jpg);
+        background-image: url(https://upload.cc/i1/2022/04/14/CBWzIb.jpg);
         background-size: cover;
         background-position: center center;
         opacity: 0.9;
