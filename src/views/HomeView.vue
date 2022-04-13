@@ -7,15 +7,15 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background-image: url(https://upload.cc/i1/2022/04/13/KOaCrd.jpg);
+        background-image: url(https://upload.cc/i1/2022/04/13/sWkLEA.jpg);
         background-size: cover;
         background-position: center center;
-        opacity: 0.2;
+        opacity: 0.9;
+        z-index: -1;
       "
     ></div>
-    <div class="container d-flex flex-column" style="min-height: 100vh">
-      <!-- place for navbar -->
-      <div class="row justify-content-center my-auto">
+    <div class="container d-flex flex-column" style="min-height: 100vh ">
+      <div class="row justify-content-center mt-5">
         <div class="col-md-6 text-center">
           <h2>Little.My 韓國女裝代購 <br>小小單品創造出自己風格</h2>
         </div>
@@ -48,7 +48,7 @@
     <div class="container">
 
             <div class="row justify-content-center my-3">
-              <div class="col-md-6 text-center">
+              <div class="col-md-6 text-center pt-2">
                 <h3><i class="bi bi-heart-half"></i>本月推薦</h3>
               </div>
             </div>
