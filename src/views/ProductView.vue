@@ -1,5 +1,5 @@
 <template>
- <div class="container margin-top: 5rem">
+ <div class="container" style="margin-top: 5rem" >
     <div class="row align-items-center">
       <div class="col-md-7">
       <swiper
