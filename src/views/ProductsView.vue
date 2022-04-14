@@ -25,16 +25,12 @@
         >
           <div class="card border-0">
             <div
-              class="card-header px-0 py-4 bg-white border border-bottom-0 border-top border-start-0 border-end-0 rounded-0"
+              class="card-header px-0 py-4 bg-white"
               id="headingOne"
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
             >
-              <div
-                class="d-flex justify-content-between align-items-center pe-1"
-              >
-                <h4 class="mb-0">商品分類</h4>
-              </div>
+                <h4 class="mx-auto">商品分類</h4>
             </div>
             <div
               id="collapseOne"
@@ -42,7 +38,7 @@
               aria-labelledby="headingOne"
             >
               <div class="card-body py-0">
-                <ul class="list-group list-unstyled " style="border:0px">
+                <ul class="list-group list-unstyled border-0" >
                   <li>
                     <router-link to='/products' class="py-2 list-group-item list-group-item-action"
                       >所有商品</router-link>
