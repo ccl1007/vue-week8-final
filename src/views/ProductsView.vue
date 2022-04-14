@@ -22,7 +22,6 @@
       <div class="col-md-3">
         <div
           class="accordion border border-bottom border-top-0 border-start-0 border-end-0 mb-3"
-          id="accordionExample"
         >
           <div class="card border-0">
             <div
@@ -35,35 +34,33 @@
                 class="d-flex justify-content-between align-items-center pe-1"
               >
                 <h4 class="mb-0">商品分類</h4>
-                <i class="fas fa-chevron-down"></i>
               </div>
             </div>
             <div
               id="collapseOne"
               class="collapse show"
               aria-labelledby="headingOne"
-              data-bs-parent="#accordionExample"
             >
               <div class="card-body py-0">
-                <ul class="list-unstyled">
+                <ul class="list-group list-unstyled " style="border:0px">
                   <li>
-                    <router-link to='/products' class="py-2 d-block text-muted"
+                    <router-link to='/products' class="py-2 list-group-item list-group-item-action"
                       >所有商品</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ path: '/products',query: { category: 'Top' }} " class="py-2 d-block text-muted"
+                    <router-link :to="{ path: '/products',query: { category: 'Top' }} " class="py-2 list-group-item list-group-item-action"
                       >上衣</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ path: '/products',query: { category: 'Outer' }} " class="py-2 d-block text-muted"
+                    <router-link :to="{ path: '/products',query: { category: 'Outer' }} " class="py-2 list-group-item list-group-item-action"
                       >外套</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ path: '/products',query: { category: 'Shoes' }} " class="py-2 d-block text-muted"
+                    <router-link :to="{ path: '/products',query: { category: 'Shoes' }} " class="py-2 list-group-item list-group-item-action"
                       >訂製鞋款</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ path: '/products',query: { category: 'Accessory' }} " class="py-2 d-block text-muted"
+                    <router-link :to="{ path: '/products',query: { category: 'Accessory' }} " class="py-2 list-group-item list-group-item-action"
                       >飾品/配件</router-link>
                   </li>
                 </ul>
