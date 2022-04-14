@@ -47,29 +47,24 @@
               <div class="card-body py-0">
                 <ul class="list-unstyled">
                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted"
-                      >全部商品</router-link
-                    >
+                    <router-link to='/products' class="py-2 d-block text-muted"
+                      >所有商品</router-link>
                   </li>
                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted"
-                      >上衣</router-link
-                    >
+                    <router-link :to="{ path: '/products',query: { category: 'Top' }} " class="py-2 d-block text-muted"
+                      >上衣</router-link>
                   </li>
                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted"
-                      >外套</router-link
-                    >
+                    <router-link :to="{ path: '/products',query: { category: 'Outer' }} " class="py-2 d-block text-muted"
+                      >外套</router-link>
                   </li>
                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted"
-                      >飾品</router-link
-                    >
+                    <router-link :to="{ path: '/products',query: { category: 'Shoes' }} " class="py-2 d-block text-muted"
+                      >訂製鞋款</router-link>
                   </li>
                   <li>
-                    <router-link to="/" class="py-2 d-block text-muted"
-                      >鞋子</router-link
-                    >
+                    <router-link :to="{ path: '/products',query: { category: 'Accessory' }} " class="py-2 d-block text-muted"
+                      >飾品/配件</router-link>
                   </li>
                 </ul>
               </div>
@@ -79,7 +74,7 @@
       </div>
       <div class="col-md-8">
         <!-- row-cols-n n-定義欄數 1R/nC -->
-        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
           <div class="col" v-for="product in products" :key="product.id">
             <div class="card border-0 mb-4 position-relative position-relative">
               <!-- <img
@@ -138,13 +133,21 @@ export default {
       currentPage: 1
     }
   },
+  watch: {
+    $route () {
+      this.getProducts()
+    }
+  },
   components: {
     Pagination
   },
-  inject: ['emitter'],
   methods: {
     getProducts (page = 1) {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products?page=${page}`
+      const { category } = this.$route.query
+      let url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products?page=${page}`
+      if (category) {
+        url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products?page=${page}&category=${category}`
+      }
       this.$http.get(url).then((res) => {
         console.log('getProducts:', res)
         this.products = res.data.products
