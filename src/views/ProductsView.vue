@@ -38,7 +38,7 @@
               aria-labelledby="headingOne"
             >
               <div class="card-body py-0 ">
-                <ul class="list-group list-unstyled border-0" >
+                <ul class="list-group list-unstyled " style="border:0px" >
                   <li>
                     <router-link to='/products' class="list-group-item list-group-item-action"
                       >所有商品</router-link>
