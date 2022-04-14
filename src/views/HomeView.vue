@@ -64,12 +64,12 @@
         />
       </div>
       <div class="col-md-4 m-auto text-center">
-        <h4 class="mt-4"> *滿$3000免運*</h4>
+        <h4 class="mt-4"> 滿$3000免運</h4>
         <p class="text-muted">
           國內地區<br>
-          ✔️7-11/全家 超商不付款取貨 運費$60<br>
-          ✔️郵寄 運費$80<br>
-          ✔️門市自取 運費$0<br>
+          超商 運費$60<br>
+          郵寄 運費$80<br>
+          門市自取 運費$0<br>
         </p>
       </div>
     </div>
