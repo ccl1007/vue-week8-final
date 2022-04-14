@@ -21,7 +21,7 @@
     <div class="row">
       <div class="col-md-3">
         <div
-          class="accordion border border-bottom border-top-0 border-start-0 border-end-0 mb-3"
+          class="accordion border border-bottom border-top-0 border-start-0 border-end-0 mb-0"
         >
           <div class="card border-0">
             <div
@@ -37,7 +37,7 @@
               class="collapse show"
               aria-labelledby="headingOne"
             >
-              <div class="card-body py-0">
+              <div class="card-body py-0 ">
                 <ul class="list-group list-unstyled border-0" >
                   <li>
                     <router-link to='/products' class="list-group-item list-group-item-action"
