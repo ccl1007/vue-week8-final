@@ -6,27 +6,22 @@
       <button
         class="navbar-toggler"
         type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
+        @click="toggleNavHam"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div
-        class="collapse navbar-collapse justify-content-end"
-        id="navbarNavAltMarkup"
+        class="collapse navbar-collapse justify-content-end" ref="collapse"
       >
         <ul class="navbar-nav">
-          <li><router-link @click="scrollToTop()" class="nav-item nav-link me-4 " to="/"
+          <li><router-link @click="closeNavHam" class="nav-item nav-link me-4 " to="/"
             >首頁  </router-link
           ></li>
-          <li><router-link @click="scrollToTop()" class="nav-item nav-link me-4"  to="/products"
+          <li><router-link @click="closeNavHam" class="nav-item nav-link me-4"  to="/products"
             >產品列表</router-link
           ></li>
-          <li><router-link @click="scrollToTop()" class="nav-item nav-link me-4" to="/guide">購物須知</router-link></li>
-          <li me-4 ><router-link @click="scrollToTop()" class="nav-item nav-link  position-relative " to="/cart"
+          <li><router-link @click="closeNavHam" class="nav-item nav-link me-4" to="/guide">購物須知</router-link></li>
+          <li me-4 ><router-link @click="closeNavHam" class="nav-item nav-link  position-relative " to="/cart"
             ><i class="bi bi-cart fs-5 " ></i
             ><span
                 class="position-absolute top-10 start-90 translate-middle badge rounded-pill bg-danger "
@@ -43,6 +38,7 @@
 </template>
 
 <script>
+import collapseMixin from '@/mixins/collapseMixin'
 import emitter from '@/utils/emitter'
 
 export default {
@@ -52,6 +48,7 @@ export default {
       }
     }
   },
+  mixins: [collapseMixin],
   methods: {
     getCart () {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`

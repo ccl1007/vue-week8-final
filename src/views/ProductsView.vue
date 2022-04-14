@@ -40,23 +40,23 @@
               <div class="card-body py-0 ">
                 <ul class="list-group list-unstyled " style="border:0px" >
                   <li>
-                    <router-link to='/products' class="list-group-item list-group-item-action"
+                    <router-link to='/products' class="list-group-item list-group-item-action border-0"
                       >所有商品</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ path: '/products',query: { category: 'Top' }} " class="list-group-item list-group-item-action"
+                    <router-link :to="{ path: '/products',query: { category: 'Top' }} " class="list-group-item list-group-item-action border-0"
                       >上衣</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ path: '/products',query: { category: 'Outer' }} " class="list-group-item list-group-item-action"
+                    <router-link :to="{ path: '/products',query: { category: 'Outer' }} " class="list-group-item list-group-item-action border-0"
                       >外套</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ path: '/products',query: { category: 'Shoes' }} " class="list-group-item list-group-item-action"
+                    <router-link :to="{ path: '/products',query: { category: 'Shoes' }} " class="list-group-item list-group-item-action border-0"
                       >訂製鞋款</router-link>
                   </li>
                   <li>
-                    <router-link :to="{ path: '/products',query: { category: 'Accessory' }} " class=" list-group-item list-group-item-action"
+                    <router-link :to="{ path: '/products',query: { category: 'Accessory' }} " class=" list-group-item list-group-item-action border-0"
                       >飾品/配件</router-link>
                   </li>
                 </ul>
