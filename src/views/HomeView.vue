@@ -41,7 +41,6 @@
         />
       </div>
       <div data-aos="fade-right"
-      data-aos-delay="300"
        class="col-md-4 m-auto text-start">
         <h4 class="mt-4">滿$3000免運</h4>
         <p class="text-muted text-start">

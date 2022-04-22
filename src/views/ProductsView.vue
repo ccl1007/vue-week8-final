@@ -66,14 +66,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-9 ">
+      <div class="col-md-9">
         <!-- row-cols-n n-定義欄數 1R/nC -->
-        <div class="row g-2 row-cols-1 row-cols-md-3 row-cols-lg-3  ">
-          <div
-          class="col mb-4 "
-          v-for="product in products" :key="product.id"
-          >
-            <div class="card border-0 m-2 position-relative ">
+        <div class="row g-2 row-cols-1 row-cols-md-3 row-cols-lg-3">
+          <div class="col mb-4" v-for="product in products" :key="product.id">
+            <div class="card border-0 m-2 position-relative">
               <!-- 圖片等高的解決方式- 使用背景圖 -->
               <router-link :to="`/product/${product.id}`">
                 <div
@@ -86,25 +83,33 @@
                   :alt="product.title"
                 ></div>
               </router-link>
-              <h5 class="mb-0 mt-3 ">
+              <h5
+                class="mb-0 mt-3"
+                style="
+                  overflow: hidden;
+                  white-space: nowrap;
+                  text-overflow: ellipsis;
+                "
+              >
                 <router-link
-                class="text-decoration-none fw-bold "
-                style="overflow: hidden"
-                :to="`/product/${product.id}`">{{ product.title }}</router-link>
+                  class="text-decoration-none fw-bold"
+                  :to="`/product/${product.id}`"
+                  >{{ product.title }}</router-link
+                >
               </h5>
               <div class="d-flex justify-content-between mb-1">
-                    <small class="text-muted"
-                    ><del>NT${{ product.origin_price }}</del></small
-                  >
-                    <strong>NT${{ product.price }}</strong>
+                <small class="text-muted"
+                  ><del>NT${{ product.origin_price }}</del></small
+                >
+                <strong>NT${{ product.price }}</strong>
               </div>
               <button
-              class="btn btn-secondary fw-bold text-white"
-              @click.prevent="addToCart(product.id)"
-              :disabled="status.loadingItem === product.id"
-               >
-                  加入購物車
-                </button>
+                class="btn btn-secondary fw-bold text-white"
+                @click.prevent="addToCart(product.id)"
+                :disabled="status.loadingItem === product.id"
+              >
+                加入購物車
+              </button>
             </div>
           </div>
         </div>
