@@ -49,7 +49,7 @@
           郵寄 運費$80<br />
           門市自取 運費$0<br />
         </p>
-        <button type="button" class="btn btn-secondary mt-3 text-white">立即選購</button>
+        <router-link :to="`/products`"><button type="button" class=" text-start btn btn-secondary mt-3 text-white">立即選購</button></router-link>
       </div>
     </div>
     <div class="row flex-row-reverse justify-content-between mt-4">
@@ -61,13 +61,13 @@
         />
       </div>
       <div data-aos="fade-left" class="col-md-4 m-auto text-start">
-        <h4 class="mt-4  ">春季新品大回饋</h4>
+        <h4 class="mt-4">春季新品大回饋</h4>
         <p class="text-muted ">
           凡儲值購物金，現享購物金回饋<br />
           ✔單次儲值3000元，現享回饋300元購物金<br />
           ✔單次儲值5000元，現享回饋500元購物金<br />
         </p>
-        <button type="button" class=" text-start btn btn-secondary mt-3 text-white">立即選購</button>
+        <router-link :to="`/products`"><button type="button" class=" text-start btn btn-secondary mt-3 text-white">立即選購</button></router-link>
       </div>
     </div>
   </div>
