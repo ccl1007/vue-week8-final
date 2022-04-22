@@ -57,9 +57,6 @@ export default {
           console.log('getCart:', res)
           this.cartData = res.data.data
         })
-    },
-    scrollToTop () {
-      window.scrollTo(0, 0)
     }
   },
   mounted () {

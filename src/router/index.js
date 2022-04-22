@@ -27,11 +27,15 @@ const routes = [
     name: 'cart',
     component: () => import('../views/CartView.vue')
   }
+
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+router.afterEach(() => {
+  window.scrollTo(0, 0)
 })
 
 export default router

@@ -1,5 +1,6 @@
 <template>
   <div class="container " style="margin-top: 5rem">
+    <Loading :active="isLoading"></Loading>
     <div class="mt-4">
       <!-- 購物車列表 -->
       <div class="text-end">
@@ -189,6 +190,7 @@ export default {
       })
     },
     getProduct (id) {
+      this.isLoading = true
       this.$router.push(`/user/product/${id}`)
     },
     addToCart (id, qty = 1) {
@@ -213,8 +215,10 @@ export default {
       })
     },
     deleteAllCarts () {
+      this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`
       this.$http.delete(url).then((response) => {
+        this.isLoading = false
         console.log(response)
         alert('清除購物車')
         this.getCart()
@@ -224,6 +228,7 @@ export default {
       })
     },
     getCart () {
+      this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(url).then((response) => {
         this.cart = response.data.data
@@ -234,6 +239,7 @@ export default {
       })
     },
     removeCartItem (id) {
+      this.isLoading = true
       this.status.loadingItem = id
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`
       this.$http.delete(url).then((response) => {
