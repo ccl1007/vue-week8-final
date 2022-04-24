@@ -54,7 +54,6 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.$http.get(url)
         .then((res) => {
-          console.log('getCart:', res)
           this.cartData = res.data.data
         })
     }

@@ -50,9 +50,7 @@
         <h2 class="fw-bold h1 mb-1">{{ product.title }}</h2>
         <div class="row">
           <div class="col-md-6">
-            <p
-            class="text-muted"
-            style="white-space: pre-wrap;">
+            <p class="text-muted" style="white-space: pre-wrap">
               {{ product.description }}
             </p>
           </div>
@@ -94,7 +92,7 @@
               </div>
             </div>
           </div>
-          <div class="col-6 ">
+          <div class="col-6">
             <a
               href="#"
               class="text-nowrap btn btn-dark w-100 py-2"
@@ -106,12 +104,13 @@
         </div>
       </div>
     </div>
-    <div class="row my-5">
-      <div class="col-md-8 mx-auto">
-        <p
-        style="white-space: pre-wrap;">
-          {{ product.content }}
-        </p>
+    <div class="container my-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-5">
+          <p style="white-space: pre-wrap">
+            {{ product.content }}
+          </p>
+        </div>
       </div>
     </div>
     <h3 class="fw-bold">您可能還喜歡以下產品</h3>
@@ -226,7 +225,6 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id} `
       this.$http.get(url).then((res) => {
         this.isLoading = false
-        console.log('getProduct', res)
         this.product = res.data.product
       })
     },
@@ -240,7 +238,7 @@ export default {
       this.$http.post(url, { data }).then((res) => {
         this.isLoading = false
         console.log('addToCart:', res)
-        alert(res.data.message)
+        this.$swal(res.data.message)
         // 觸發監聽事件
         emitter.emit('get-cart')
       })

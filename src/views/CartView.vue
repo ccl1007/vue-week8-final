@@ -185,7 +185,7 @@ export default {
         this.isLoading = false
       }).catch((error) => {
         this.isLoading = false
-        console.log(error.response)
+        this.$swal(error.response)
         alert('錯誤訊息')
       })
     },
@@ -202,55 +202,49 @@ export default {
         qty
       }
 
-      this.$http.post(url, { data: cart }).then((response) => {
+      this.$http.post(url, { data: cart }).then((res) => {
         this.status.loadingItem = ''
         this.isLoading = false
-        console.log(response)
-        alert('加入購物車')
+        this.$swal(res.data.message)
         this.getCart()
       }).catch((error) => {
         this.isLoading = false
-        console.log(error.response)
-        alert('錯誤訊息')
+        this.$swal(error.response)
       })
     },
     deleteAllCarts () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`
-      this.$http.delete(url).then((response) => {
+      this.$http.delete(url).then((res) => {
         this.isLoading = false
-        console.log(response)
-        alert('清除購物車')
+        this.$swal(res.data.message)
         this.getCart()
       }).catch((error) => {
-        console.log(error.response)
-        alert('清除購物車')
+        this.$swal(error.response)
       })
     },
     getCart () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
-      this.$http.get(url).then((response) => {
-        this.cart = response.data.data
+      this.$http.get(url).then((res) => {
+        this.cart = res.data.data
         this.isLoading = false
       }).catch((error) => {
-        console.log(error.response)
-        alert('錯誤訊息')
+        this.$swal(error.response)
       })
     },
     removeCartItem (id) {
       this.isLoading = true
       this.status.loadingItem = id
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`
-      this.$http.delete(url).then((response) => {
-        alert('移除購物車品項')
+      this.$http.delete(url).then((res) => {
+        this.$swal(res.data.message)
         this.status.loadingItem = ''
         this.isLoading = false
         this.getCart()
       }).catch((error) => {
         this.isLoading = false
-        console.log(error.response)
-        alert('移除購物車品項')
+        this.$swal(error.response)
       })
     },
     updateCart (data) {
@@ -261,28 +255,26 @@ export default {
         qty: data.qty
       }
 
-      this.$http.put(url, { data: cart }).then((response) => {
-        alert('更新購物車')
+      this.$http.put(url, { data: cart }).then((res) => {
+        this.$swal(res.data.message)
         this.isLoading = false
         this.getCart()
       }).catch((error) => {
         this.isLoading = false
-        console.log(error.response)
-        alert('移除購物車品項')
+        this.$swal(error.response)
       })
     },
     createOrder () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`
       const order = this.form
-      this.$http.post(url, { data: order }).then((response) => {
-        alert(response.data.message, '建立訂單')
+      this.$http.post(url, { data: order }).then((res) => {
+        this.$swal(res.data.message)
         // this.$router.push(`/user/checkout/${response.data.orderId}`)
         this.$refs.form.resetForm()
         this.isLoading = false
       }).catch((error) => {
-        console.log(error.response)
-        alert('建立訂單')
+        this.$swal(error.response)
       })
     }
   },

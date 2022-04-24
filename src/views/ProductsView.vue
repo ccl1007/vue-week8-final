@@ -154,7 +154,6 @@ export default {
       }
       this.$http.get(url).then((res) => {
         this.isLoading = false
-        console.log('getProducts:', res)
         this.products = res.data.products
         this.pagination = res.data.pagination
       })
@@ -169,8 +168,7 @@ export default {
       }
       this.$http.post(url, { data }).then((res) => {
         this.isLoading = false
-        console.log('addToCart:', res)
-        alert(res.data.message)
+        this.$swal(res.data.message)
         // 觸發監聽事件
         emitter.emit('get-cart')
         this.status.loadingItem = ''

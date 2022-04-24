@@ -80,7 +80,53 @@
       </div>
     </div>
   </div>
-  <div class="container">
+      <div class="container mt-4 mb-5">
+      <Swiper
+        :spaceBetween="2"
+        :loop="true"
+        :navigation="true"
+        :modules="modules"
+        :breakpoints="swiperOption"
+        class="my-2"
+      >
+        <SwiperSlide v-for="item in products" :key="item.id">
+          <div class="card cursor-pointer" @click="getProduct(item.id)">
+            <router-link
+              class="text-decoration-none"
+              :to="`/product/${item.id}`"
+            >
+              <div class="overflow-hidden position-relative">
+                <div
+                  :style="{ backgroundImage: `url(${item.imageUrl})` }"
+                  style="
+                    height: 300px;
+                    background-size: cover;
+                    background-position: center center;
+                  "
+                ></div>
+              </div>
+              <div class="card-body">
+                <h4
+                  class="card-title space-nowrap overflow-hidden text-truncate"
+                >
+                  <strong>{{ item.title }}</strong>
+                </h4>
+                <p class="card-text text-truncate text-muted mb-2">
+                  {{ item.description }}
+                </p>
+                <div class="d-flex justify-content-center align-items-center">
+                  <h5 class="fs-3 mb-0 me-2">NT${{ item.price }}</h5>
+                  <h5 class="fs-6 mb-0 text-decoration-line-through text-muted">
+                    NT${{ item.origin_price }}
+                  </h5>
+                </div>
+              </div>
+            </router-link>
+          </div>
+        </SwiperSlide>
+      </Swiper>
+    </div>
+  <!-- <div class="container">
     <div class="row my-5">
       <swiper
         :modules="modules"
@@ -102,7 +148,7 @@
         </swiper-slide>
       </swiper>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -125,18 +171,22 @@ export default {
       id: '',
       // modules放在data即可
       modules: [Navigation, Pagination],
-      breakpoints: {
-        767: {
+      swiperOption: {
+        1: {
           slidesPerView: 1,
-          spaceBetween: 20
+          slidesPerGroup: 1
         },
         768: {
           slidesPerView: 2,
-          spaceBetween: 20
+          slidesPerGroup: 2
         },
-        1024: {
-          slidesPerView: 5,
-          spaceBetween: 20
+        992: {
+          slidesPerView: 3,
+          slidesPerGroup: 3
+        },
+        1200: {
+          slidesPerView: 4,
+          slidesPerGroup: 4
         }
       }
     }

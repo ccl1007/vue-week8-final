@@ -16,11 +16,15 @@ import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
 // 匯入多國語系的功能
 import { localize, setLocale } from '@vee-validate/i18n'
 
+import AOS from 'aos'
+// importing AOS css style globally
+import 'aos/dist/aos.css'
+
 import Loading from 'vue-loading-overlay'
 import 'vue-loading-overlay/dist/vue-loading.css'
 
-import AOS from 'aos'
-import 'aos/dist/aos.css'
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
 
 Object.keys(AllRules).forEach((rule) => {
   defineRule(rule, AllRules[rule])
@@ -37,7 +41,7 @@ const app = createApp(App)
 app.use(router)
 // 載入axios要放在router後面!!!
 app.use(VueAxios, axios)
-app.use(AOS)
+app.use(VueSweetalert2)
 app.component('Form', Form)
 app.component('Field', Field)
 app.component('ErrorMessage', ErrorMessage)
