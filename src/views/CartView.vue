@@ -1,5 +1,5 @@
 <template>
-  <div class="container " style="margin-top: 5rem">
+  <div class="container" style="margin-top: 5rem">
     <Loading :active="isLoading"></Loading>
     <div class="mt-4">
       <!-- 購物車列表 -->
@@ -19,7 +19,7 @@
             <th></th>
             <th>品名</th>
             <th style="width: 110px">數量</th>
-            <th class="text-end" >單價</th>
+            <th class="text-end">單價</th>
           </tr>
         </thead>
         <!-- 取得購物車資料 -->
@@ -37,7 +37,7 @@
                 </button>
               </td>
               <td>
-                  {{ item.product.title }}
+                {{ item.product.title }}
               </td>
               <td>
                 <div class="input-group input-group-sm">
@@ -48,11 +48,11 @@
                     v-model.number="item.qty"
                     @blur="updateCart(item)"
                   />
-                  <div class="input-group-text"> {{ item.product.unit }}</div>
+                  <div class="input-group-text">{{ item.product.unit }}</div>
                 </div>
               </td>
-              <td class="text-end" >
-                {{item.final_total}}
+              <td class="text-end">
+                {{ item.final_total }}
               </td>
             </tr>
           </template>
@@ -60,7 +60,7 @@
         <tfoot>
           <tr>
             <td colspan="3" class="text-end">總計</td>
-            <td class="text-end ">
+            <td class="text-end">
               {{ cart.final_total }}
             </td>
           </tr>
@@ -138,7 +138,7 @@
         <div class="mb-3">
           <label for="message" class="form-label">留言</label>
           <textarea
-            name=""
+            name="留言"
             id="message"
             class="form-control"
             cols="30"
@@ -155,6 +155,7 @@
 </template>
 
 <script>
+import emitter from '@/utils/emitter'
 export default {
   data () {
     return {
@@ -180,18 +181,17 @@ export default {
     getProducts () {
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products`
       this.isLoading = true
-      this.$http.get(url).then((response) => {
-        this.products = response.data.products
-        this.isLoading = false
-      }).catch((error) => {
-        this.isLoading = false
-        this.$swal(error.response)
-        alert('錯誤訊息')
-      })
-    },
-    getProduct (id) {
-      this.isLoading = true
-      this.$router.push(`/user/product/${id}`)
+      this.$http
+        .get(url)
+        .then((response) => {
+          this.products = response.data.products
+          this.isLoading = false
+        })
+        .catch((error) => {
+          this.isLoading = false
+          this.$swal(error.response)
+          alert('錯誤訊息')
+        })
     },
     addToCart (id, qty = 1) {
       this.isLoading = true
@@ -202,50 +202,62 @@ export default {
         qty
       }
 
-      this.$http.post(url, { data: cart }).then((res) => {
-        this.status.loadingItem = ''
-        this.isLoading = false
-        this.$swal(res.data.message)
-        this.getCart()
-      }).catch((error) => {
-        this.isLoading = false
-        this.$swal(error.response)
-      })
+      this.$http
+        .post(url, { data: cart })
+        .then((res) => {
+          this.status.loadingItem = ''
+          this.isLoading = false
+          this.$swal(res.data.message)
+          this.getCart()
+        })
+        .catch((error) => {
+          this.isLoading = false
+          this.$swal(error.response)
+        })
     },
     deleteAllCarts () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/carts`
-      this.$http.delete(url).then((res) => {
-        this.isLoading = false
-        this.$swal(res.data.message)
-        this.getCart()
-      }).catch((error) => {
-        this.$swal(error.response)
-      })
+      this.$http
+        .delete(url)
+        .then((res) => {
+          this.isLoading = false
+          this.$swal(res.data.message)
+          this.getCart()
+        })
+        .catch((error) => {
+          this.$swal(error.response)
+        })
     },
     getCart () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`
-      this.$http.get(url).then((res) => {
-        this.cart = res.data.data
-        this.isLoading = false
-      }).catch((error) => {
-        this.$swal(error.response)
-      })
+      this.$http
+        .get(url)
+        .then((res) => {
+          this.cart = res.data.data
+          this.isLoading = false
+        })
+        .catch((error) => {
+          this.$swal(error.response)
+        })
     },
     removeCartItem (id) {
       this.isLoading = true
       this.status.loadingItem = id
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart/${id}`
-      this.$http.delete(url).then((res) => {
-        this.$swal(res.data.message)
-        this.status.loadingItem = ''
-        this.isLoading = false
-        this.getCart()
-      }).catch((error) => {
-        this.isLoading = false
-        this.$swal(error.response)
-      })
+      this.$http
+        .delete(url)
+        .then((res) => {
+          this.$swal(res.data.message)
+          this.status.loadingItem = ''
+          this.isLoading = false
+          this.getCart()
+        })
+        .catch((error) => {
+          this.isLoading = false
+          this.$swal(error.response)
+        })
     },
     updateCart (data) {
       this.isLoading = true
@@ -255,27 +267,39 @@ export default {
         qty: data.qty
       }
 
-      this.$http.put(url, { data: cart }).then((res) => {
-        this.$swal(res.data.message)
-        this.isLoading = false
-        this.getCart()
-      }).catch((error) => {
-        this.isLoading = false
-        this.$swal(error.response)
-      })
+      this.$http
+        .put(url, { data: cart })
+        .then((res) => {
+          this.$swal(res.data.message)
+          this.isLoading = false
+          this.getCart()
+        })
+        .catch((error) => {
+          this.isLoading = false
+          this.$swal(error.response)
+        })
     },
     createOrder () {
       this.isLoading = true
       const url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/order`
       const order = this.form
-      this.$http.post(url, { data: order }).then((res) => {
-        this.$swal(res.data.message)
-        // this.$router.push(`/user/checkout/${response.data.orderId}`)
-        this.$refs.form.resetForm()
-        this.isLoading = false
-      }).catch((error) => {
-        this.$swal(error.response)
-      })
+      this.$http
+        .post(url, { data: order })
+        .then((res) => {
+          this.$swal.fire({
+            text: res.data.message,
+            footer: '<a class="text-decoration-none btn btn-outline-primary" href="/">回到首頁</a>'
+          })
+          // this.$router.push(`/user/checkout/${response.data.orderId}`)
+          this.$refs.form.resetForm()
+          this.form.message = ''
+          emitter.emit('get-cart')
+          this.isLoading = false
+          this.cart = {}
+        })
+        .catch((error) => {
+          this.$swal(error.response)
+        })
     }
   },
   created () {

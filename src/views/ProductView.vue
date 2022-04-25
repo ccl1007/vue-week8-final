@@ -237,7 +237,6 @@ export default {
       }
       this.$http.post(url, { data }).then((res) => {
         this.isLoading = false
-        console.log('addToCart:', res)
         this.$swal(res.data.message)
         // 觸發監聽事件
         emitter.emit('get-cart')

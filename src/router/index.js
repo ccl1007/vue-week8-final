@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const routes = [
+  { path: '/:catchAll(.*)', redirect: '/' },
   {
     path: '/',
     name: 'home',
@@ -27,7 +28,6 @@ const routes = [
     name: 'cart',
     component: () => import('../views/CartView.vue')
   }
-
 ]
 
 const router = createRouter({
