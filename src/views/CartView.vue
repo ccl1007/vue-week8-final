@@ -190,7 +190,6 @@ export default {
         .catch((error) => {
           this.isLoading = false
           this.$swal(error.response)
-          alert('錯誤訊息')
         })
     },
     addToCart (id, qty = 1) {
@@ -249,7 +248,12 @@ export default {
       this.$http
         .delete(url)
         .then((res) => {
-          this.$swal(res.data.message)
+          this.$swal(
+            {
+              text: res.data.message,
+              confirmButtonText: '確定'
+            }
+          )
           this.status.loadingItem = ''
           this.isLoading = false
           this.getCart()
@@ -288,9 +292,8 @@ export default {
         .then((res) => {
           this.$swal.fire({
             text: res.data.message,
-            footer: '<a class="text-decoration-none btn btn-outline-primary" href="/">回到首頁</a>'
+            footer: '<a class="text-decoration-none btn btn-outline-primary" href="/vue-week8-final/#/">回到首頁</a>'
           })
-          // this.$router.push(`/user/checkout/${response.data.orderId}`)
           this.$refs.form.resetForm()
           this.form.message = ''
           emitter.emit('get-cart')
